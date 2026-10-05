@@ -1,0 +1,55 @@
+.form {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  min-height: var(--touch-target);
+  padding: 0 var(--space-4);
+  background: var(--color-field);
+  border: var(--border-width) solid var(--color-border-control);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-clay);
+  transition: box-shadow var(--duration-base) var(--ease-out);
+}
+
+.input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.input:focus {
+  box-shadow: var(--shadow-clay-lifted);
+}
+
+.send {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--touch-target);
+  padding: 0 var(--space-5);
+  background: var(--color-primary-strong);
+  color: var(--color-on-primary);
+  font-weight: var(--weight-bold);
+  border: none;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-press), var(--shadow-clay);
+  will-change: transform;
+}
+
+.send:disabled {
+  opacity: 0.55;
+  box-shadow: none;
+}
+
+.icon {
+  width: 1.125em;
+  height: 1.125em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

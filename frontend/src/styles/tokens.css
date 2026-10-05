@@ -1,0 +1,98 @@
+/*
+ * AskMyReport design tokens: the single source of truth for every visual value.
+ * Direction: Claymorphism (soft 3D, chunky borders, layered tinted shadows) in a warm beige + brown palette,
+ *   based on ui-ux-pro-max's "Bakery/Cafe: warm brown + cream" (browns kept, cream shifted to a true beige)
+ *   · Fredoka display + Nunito body · GSAP motion (timings for JS live in src/motion.ts).
+ * Every text/background pair below was contrast-checked to WCAG AA (text >= 4.5:1, UI boundaries & focus >= 3:1).
+ * Layers: primitives -> semantic tokens. Components use semantic tokens only.
+ */
+:root {
+  color-scheme: light;
+
+  /* ---- Color primitives ---- */
+  --beige-50: #fdfaf5;
+  --beige-75: #fbf7f0;
+  --beige-100: #f6efe4;
+  --beige-200: #efe3d0;
+  --beige-300: #e6d5bc;
+  --beige-400: #ddc8aa;
+  --beige-500: #cdb393;
+  --tan-600: #a47e57;
+  --caramel-600: #b45309;
+  --brown-500: #7c5a3e;
+  --brown-700: #92400e;
+  --brown-800: #78350f;
+  --brown-950: #43291a;
+  --red-50: #fef2f2;
+  --red-300: #fca5a5;
+  --red-800: #991b1b;
+
+  /* ---- Color semantic ---- */
+  --color-bg: var(--beige-100); /* beige page */
+  --color-text: var(--brown-950); /* 11.7:1 on bg */
+  --color-text-muted: var(--brown-500); /* >= 4.9:1 on every surface */
+  --color-primary: var(--brown-700); /* decorative: chart line, list markers, hover edges */
+  --color-primary-strong: var(--brown-800); /* filled: header band, user bubble, send button */
+  --color-on-primary: var(--beige-100); /* 7.9:1 on primary-strong */
+  --color-on-primary-muted: var(--beige-200);
+  --color-accent: var(--caramel-600); /* decorative accent: chart points, typing dots */
+  --color-accent-surface: var(--beige-200); /* answer cards, upload button, file chip */
+  --color-accent-surface-strong: var(--beige-300);
+  --color-accent-border: var(--beige-400);
+  --color-accent-text: var(--brown-700); /* 5.6:1 on accent-surface */
+  --color-surface-muted: var(--beige-75); /* source chips */
+  --color-border: var(--beige-300); /* decorative card edges */
+  --color-border-strong: var(--beige-500);
+  --color-border-control: var(--tan-600); /* form control edges: 3.2:1 on bg */
+  --color-field: var(--beige-50);
+  --color-focus-ring: var(--brown-700); /* >= 5.6:1 on light surfaces; header overrides it */
+  --color-danger-surface: var(--red-50);
+  --color-danger-border: var(--red-300);
+  --color-danger-text: var(--red-800);
+
+  /* ---- Elevation (clay: brown-tinted, layered) ---- */
+  --shadow-clay: 0 2px 0 rgb(67 41 26 / 0.08), 0 10px 24px -12px rgb(120 53 15 / 0.32);
+  --shadow-clay-lifted: 0 4px 0 rgb(67 41 26 / 0.08), 0 22px 40px -16px rgb(120 53 15 / 0.45);
+  --shadow-press: inset 0 -3px 0 rgb(40 22 10 / 0.28); /* chunky "pushable" bottom edge on filled buttons */
+
+  /* ---- Typography ---- */
+  --font-display: "Fredoka", "Nunito", system-ui, sans-serif;
+  --font-sans: "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+  --weight-medium: 600;
+  --weight-bold: 700;
+
+  /* ---- Spacing (4px scale) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-8: 2rem;
+
+  /* ---- Shape (clay = generous but tiered) ---- */
+  --radius-sm: 8px; /* chips */
+  --radius-md: 14px; /* inputs, buttons */
+  --radius-lg: 22px; /* bubbles, cards */
+  --radius-pill: 999px;
+  --border-width: 2px;
+  --focus-ring-width: 3px;
+
+  /* ---- Sizing ---- */
+  --touch-target: 44px;
+  --content-width: 50rem; /* readable chat column */
+  --header-width: 68rem; /* header band holds brand + filters + upload on one row */
+  --chart-height: 240px;
+
+  /* ---- Motion (CSS transitions; GSAP timings in src/motion.ts) ---- */
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+}

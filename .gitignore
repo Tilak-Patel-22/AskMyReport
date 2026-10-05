@@ -1,0 +1,14 @@
+# secrets: the real Groq key lives here, never commit it
+.env
+
+# python
+.venv/
+__pycache__/
+
+# node / vite
+node_modules/
+dist/
+
+# large, rebuilt by the pipeline (PDFs, parsed/chunked JSON, embeddings pickle, Chroma index)
+backend/data/
+backend/vectorstore/

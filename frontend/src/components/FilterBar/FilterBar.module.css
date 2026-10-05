@@ -1,0 +1,54 @@
+/* lives on the brown header band: labels use on-primary colours */
+.filters {
+  display: flex;
+  flex: 1 1 16rem;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.field {
+  display: flex;
+  flex: 1 1 8rem;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0; /* a <select> is otherwise as wide as its longest option and forces the pair to stack */
+}
+
+.label {
+  color: var(--color-on-primary-muted);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.select {
+  width: 100%;
+  min-height: var(--touch-target);
+  padding: 0 var(--space-3);
+  background: var(--color-field);
+  color: var(--color-text);
+  font-weight: var(--weight-medium);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.select:hover:not(:disabled) {
+  border-color: var(--color-accent-border);
+}
+
+.select:disabled {
+  cursor: wait;
+  opacity: 0.75;
+}
+
+.error {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--color-on-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}

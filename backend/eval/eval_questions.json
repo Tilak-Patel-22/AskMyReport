@@ -1,0 +1,26 @@
+[
+  {"type": "factual", "question": "What was TCS's consolidated revenue from operations in FY2024?", "company": "tcs", "year": "2024", "expected_facts": ["2,40,893"]},
+  {"type": "factual", "question": "What was TCS's standalone revenue from operations in FY2024?", "company": "tcs", "year": "2024", "expected_facts": ["2,02,359"]},
+  {"type": "factual", "question": "What was TCS's consolidated profit for the year in FY2024?", "company": "tcs", "year": "2024", "expected_facts": ["46,099"]},
+  {"type": "factual", "question": "What was HDFC Bank's Gross NPA ratio in FY2025?", "company": "hdfc_bank", "year": "2025", "expected_facts": ["1.33"]},
+  {"type": "factual", "question": "What were HDFC Bank's total deposits at the end of FY2025?", "company": "hdfc_bank", "year": "2025", "expected_facts": ["27,14,715"]},
+  {"type": "factual", "question": "What was HDFC Bank's capital adequacy ratio in FY2025?", "company": "hdfc_bank", "year": "2025", "expected_facts": ["19.6"]},
+  {"type": "factual", "question": "How much did Reliance Industries Limited spend on CSR in FY2024-25, as a percentage of its average net profits?", "company": "reliance", "year": "2025", "expected_facts": ["1,309", "2.49"]},
+  {"type": "factual", "question": "What was Infosys's revenue in FY2025?", "company": "infosys", "year": "2025", "expected_facts": ["1,62,990"]},
+  {"type": "factual", "question": "How many vehicles did Maruti Suzuki sell in 2022-23?", "company": "maruti_suzuki", "year": "2023", "expected_facts": ["1,966,164"]},
+  {"type": "factual", "question": "What was Hindustan Unilever's turnover in FY2024-25?", "company": "hindustan_unilever", "year": "2025", "expected_facts": ["60,680"]},
+  {"type": "factual", "question": "What was Sun Pharma's consolidated revenue from operations in FY2025?", "company": "sun_pharma", "year": "2025", "expected_facts": ["525,784"]},
+
+  {"type": "comparison", "question": "Compare TCS and Infosys revenue for FY2024", "company": null, "year": "2024", "expected_facts": ["2,40,893", "1,53,670"]},
+  {"type": "comparison", "question": "Compare TCS consolidated revenue in FY2023 and FY2024", "company": "tcs", "year": null, "expected_facts": ["2,25,458", "2,40,893"]},
+  {"type": "comparison", "question": "How did Infosys revenue change from FY2024 to FY2025?", "company": "infosys", "year": null, "expected_facts": ["1,53,670", "1,62,990"]},
+  {"type": "comparison", "question": "Compare Maruti Suzuki's profit after tax in 2021-22 and 2022-23", "company": "maruti_suzuki", "year": "2023", "expected_facts": ["37,663", "80,492"]},
+
+  {"type": "esg", "question": "What are Reliance's CSR initiatives?", "company": "reliance", "year": "2025", "expected_facts": ["rural transformation", "health", "education"]},
+  {"type": "esg", "question": "What is HDFC Bank's Parivartan programme?", "company": "hdfc_bank", "year": "2025", "expected_facts": ["Parivartan", "rural"]},
+  {"type": "esg", "question": "What sustainability initiatives does Hindustan Unilever describe in its 2024-25 report?", "company": "hindustan_unilever", "year": "2025", "expected_facts": ["water", "plastic"]},
+
+  {"type": "definition", "question": "What does Gross NPA mean?", "company": "hdfc_bank", "year": "2025", "expected_facts": ["non-performing"]},
+  {"type": "definition", "question": "What does CSR stand for and what is it?", "company": "reliance", "year": "2025", "expected_facts": ["Corporate Social Responsibility"]},
+  {"type": "definition", "question": "What is the difference between standalone and consolidated revenue?", "company": "tcs", "year": "2024", "expected_facts": ["subsidiaries"]}
+]

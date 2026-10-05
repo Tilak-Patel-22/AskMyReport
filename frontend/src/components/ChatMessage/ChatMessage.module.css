@@ -1,0 +1,167 @@
+.row {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.userRow {
+  justify-content: flex-end;
+}
+
+.noticeRow {
+  justify-content: center;
+}
+
+.user {
+  max-width: min(36rem, 85%);
+  margin: 0;
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-primary-strong);
+  color: var(--color-on-primary);
+  font-weight: var(--weight-medium);
+  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-sm) var(--radius-lg);
+  box-shadow: var(--shadow-press), var(--shadow-clay);
+  overflow-wrap: anywhere;
+  will-change: transform;
+}
+
+.answer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-5);
+  background: var(--color-accent-surface);
+  border: var(--border-width) solid var(--color-accent-border);
+  border-radius: var(--radius-sm) var(--radius-lg) var(--radius-lg) var(--radius-lg);
+  box-shadow: var(--shadow-clay);
+  transition: box-shadow var(--duration-base) var(--ease-out);
+  will-change: transform;
+}
+
+.user {
+  transition: box-shadow var(--duration-base) var(--ease-out);
+}
+
+/* GSAP tilts/lifts the bubble; CSS deepens the shadow to match */
+.answer:hover {
+  box-shadow: var(--shadow-clay-lifted);
+}
+
+.user:hover {
+  box-shadow: var(--shadow-press), var(--shadow-clay-lifted);
+}
+
+.error {
+  display: flex;
+  gap: var(--space-3);
+  max-width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-danger-surface);
+  border: var(--border-width) solid var(--color-danger-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-danger-text);
+  font-size: var(--text-sm);
+}
+
+.error p {
+  margin: 0;
+}
+
+.notice {
+  margin: 0;
+  padding: var(--space-1) var(--space-4);
+  background: var(--color-accent-surface-strong);
+  color: var(--color-accent-text);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  border-radius: var(--radius-pill);
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* ---- markdown answer body ---- */
+.markdown {
+  line-height: var(--leading-relaxed);
+  overflow-wrap: anywhere;
+}
+
+.markdown > :first-child {
+  margin-top: 0;
+}
+
+.markdown > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown :global(p),
+.markdown :global(ul),
+.markdown :global(ol) {
+  margin: 0 0 var(--space-3);
+}
+
+.markdown :global(ul),
+.markdown :global(ol) {
+  padding-left: var(--space-5);
+}
+
+.markdown :global(li) + :global(li) {
+  margin-top: var(--space-1);
+}
+
+.markdown :global(li)::marker {
+  color: var(--color-primary);
+}
+
+.markdown :global(h1),
+.markdown :global(h2),
+.markdown :global(h3),
+.markdown :global(h4) {
+  margin: var(--space-4) 0 var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+}
+
+.markdown :global(strong) {
+  color: var(--color-primary-strong);
+  font-weight: var(--weight-bold);
+}
+
+.markdown :global(hr) {
+  border: none;
+  border-top: var(--border-width) solid var(--color-accent-border);
+}
+
+/* wide tables scroll inside the answer instead of widening the page on phones */
+.tableScroll {
+  margin: 0 0 var(--space-3);
+  overflow-x: auto;
+}
+
+.tableScroll :global(table) {
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.tableScroll :global(th),
+.tableScroll :global(td) {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: var(--border-width) solid var(--color-accent-border);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tableScroll :global(th) {
+  color: var(--color-accent-text);
+  font-weight: var(--weight-bold);
+}
