@@ -4,7 +4,7 @@ import axios from 'axios'
 export const API_BASE = 'http://localhost:8000'
 
 const http = axios.create({ baseURL: API_BASE, timeout: 90_000 }) // answers take ~20 s (comparisons ~30 s); leave headroom
-const UPLOAD_TIMEOUT = 180_000 // a large PDF is parsed, chunked and embedded server-side: up to ~1 min
+const UPLOAD_TIMEOUT = 600_000 // the PDF is parsed, chunked and embedded server-side: ~1-3 min for a 300-page report
 
 /** One id per browser, kept in localStorage so chat history survives reloads. */
 export const SESSION_ID = (() => {
@@ -32,7 +32,7 @@ export type Chart = {
 export type AskResponse = { answer: string; sources: Source[]; chart: Chart | null }
 /** One past turn from GET /history/{session_id}. */
 export type HistoryTurn = { query: string } & AskResponse
-export type Upload = { upload_id: string }
+export type Upload = { upload_id: string; filename: string; pages: number; chunks: number }
 /** Where /ask looks: one uploaded PDF, or the report library narrowed by company/year (null = all). */
 export type Scope = { upload_id: string } | { company: string | null; year: string | null }
 

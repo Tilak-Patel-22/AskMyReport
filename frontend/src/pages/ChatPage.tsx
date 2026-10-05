@@ -188,9 +188,9 @@ export function ChatPage() {
             {uploading && (
               <WaitIndicator
                 label="Processing your PDF: reading, chunking and indexing it"
-                hint="Large reports can take up to a minute."
-                slowAfter={60}
-                slowHint="Still processing. Big PDFs take a while."
+                hint="Small PDFs take seconds; a 300-page report takes 1–3 minutes."
+                slowAfter={180}
+                slowHint="Still processing. Very large PDFs take a while."
               />
             )}
           </ol>

@@ -16,7 +16,8 @@ export function SourceChips({ sources, companyName }: Props) {
       <ul className={s.list} aria-label="Sources">
         {sources.map((src) => (
           <li key={`${src.company}-${src.year}-${src.page_number}`} className={s.chip}>
-            {companyName(src.company)} · FY{src.year} · p. {src.page_number}
+            {companyName(src.company)}
+            {src.year && ` · FY${src.year}`} · p. {src.page_number}
           </li>
         ))}
       </ul>

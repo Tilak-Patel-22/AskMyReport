@@ -1,0 +1,1456 @@
+[
+  {
+    "id": 1,
+    "type": "table-reasoning",
+    "question": "Across FY16 to FY25 in Sun Pharma's 2024-25 report, in which single year did revenue from operations fall compared with the year before, and to what figure?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      [
+        "FY18",
+        "FY 18",
+        "FY'18",
+        "FY2018",
+        "FY 2018",
+        "2017-18"
+      ],
+      "264,895"
+    ],
+    "expect_refusal": false,
+    "retrieved": "fail",
+    "missing_from_retrieval": [
+      "264,895"
+    ],
+    "generated": "fail",
+    "missing_from_answer": [
+      [
+        "FY18",
+        "FY 18",
+        "FY'18",
+        "FY2018",
+        "FY 2018",
+        "2017-18"
+      ],
+      "264,895"
+    ],
+    "answer": "The report shows that revenue (total income) dropped in FY 24 compared with the prior year. In FY 24 the company recorded revenue of **₹ 273,282 million**, down from ₹ 291,453 million in FY 23.  \n\n*Revenue* is the total amount of money earned from the company’s core business activities before any expenses are deducted.",
+    "sources": [
+      {
+        "company": "sun_pharma",
+        "year": "2025",
+        "page_number": 6
+      }
+    ],
+    "error": null,
+    "seconds": 13.3
+  },
+  {
+    "id": 2,
+    "type": "table-reasoning",
+    "question": "According to the ten-year summary in Sun Pharma's 2024-25 report, which year had the lowest net profit after minority interest, and what was it?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      [
+        "FY18",
+        "FY 18",
+        "FY'18",
+        "FY2018",
+        "FY 2018",
+        "2017-18"
+      ],
+      "20,957"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The ten‑year table shows that the smallest net profit after minority interest was recorded in **FY 2018**, when the profit was **₹ 20,957 million**.\n\n*Net profit after minority interest* is the company’s earnings for the year after subtracting the portion of profit that belongs to shareholders of subsidiaries that are not owned by the parent (the “minority” owners).",
+    "sources": [
+      {
+        "company": "sun_pharma",
+        "year": "2025",
+        "page_number": 6
+      }
+    ],
+    "error": null,
+    "seconds": 7.9
+  },
+  {
+    "id": 3,
+    "type": "table-reasoning",
+    "question": "In Sun Pharma's 2024-25 ten-year summary, what was the first year in which net profit exceeded ₹80,000 million?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      [
+        "FY23",
+        "FY 23",
+        "FY'23",
+        "FY2023",
+        "FY 2023",
+        "2022-23"
+      ],
+      "84,736"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The ten‑year table shows Sun Pharma’s net profit (after minority interest) in ₹ million for each fiscal year. The first year where the profit went above ₹ 80,000 million was **FY 23**, when net profit reached **₹ 84,736 million**. All earlier years were below that level.",
+    "sources": [
+      {
+        "company": "sun_pharma",
+        "year": "2025",
+        "page_number": 6
+      }
+    ],
+    "error": null,
+    "seconds": 16.5
+  },
+  {
+    "id": 4,
+    "type": "table-reasoning",
+    "question": "In Sun Pharma's 2024-25 report, in which year between FY16 and FY25 was R&D expenditure the lowest?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      [
+        "FY20",
+        "FY 20",
+        "FY'20",
+        "FY2020",
+        "FY 2020",
+        "2019-20"
+      ],
+      "19,736"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The smallest amount Sun Pharma spent on research and development (R&D) between FY 16 and FY 25 was in **FY 20**, when R&D expenditure was **₹ 19,736 Million**.\n\n*R&D expenditure* is the money a company spends on developing new medicines, improving existing products, and building the scientific and technical capabilities needed for future growth.",
+    "sources": [
+      {
+        "company": "sun_pharma",
+        "year": "2025",
+        "page_number": 6
+      }
+    ],
+    "error": null,
+    "seconds": 25.4
+  },
+  {
+    "id": 5,
+    "type": "table-reasoning",
+    "question": "Based on the ten-year financial summary in TCS's 2022-23 report, in which fiscal year did consolidated revenue from operations first exceed ₹1,50,000 crore?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      [
+        "FY20",
+        "FY 20",
+        "FY2020",
+        "FY 2020",
+        "2019-20"
+      ],
+      "156,949"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The ten‑year table shows TCS’s “Revenue from operations” (the total money earned from its core business) in rupee crores:\n\n- FY 2019 = ₹146,463 crore (below ₹150,000 crore)  \n- FY 2020 = ₹156,949 crore (above ₹150,000 crore)  \n\nSince the revenue first went over ₹150,000 crore in FY 2020, that is the fiscal year when the threshold was crossed.\n\n**Answer:** FY 2020.",
+    "sources": [
+      {
+        "company": "tcs",
+        "year": "2023",
+        "page_number": 106
+      }
+    ],
+    "error": null,
+    "seconds": 29.5
+  },
+  {
+    "id": 6,
+    "type": "table-reasoning",
+    "question": "Based on the ten-year summary in TCS's 2022-23 report, what was the first fiscal year in which consolidated revenue from operations was above ₹2,00,000 crore?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      [
+        "FY23",
+        "FY 23",
+        "FY2023",
+        "FY 2023",
+        "2022-23"
+      ],
+      "225,458"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The ten‑year performance table shows that the first fiscal year in which TCS’s consolidated revenue from operations exceeded ₹ 2,00,000 crore was **FY 2023** (the year ended 31 March 2023), with revenue of **₹ 225,458 crore**.  \n\n*Revenue from operations* is the total amount earned from the company’s core business activities before any expenses are deducted.",
+    "sources": [
+      {
+        "company": "tcs",
+        "year": "2023",
+        "page_number": 106
+      }
+    ],
+    "error": null,
+    "seconds": 22.2
+  },
+  {
+    "id": 7,
+    "type": "table-reasoning",
+    "question": "In TCS's 2022-23 ten-year summary, which geographic segment contributed the most revenue in FY 2023, and how much was it?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "Americas",
+      "124,336"
+    ],
+    "expect_refusal": false,
+    "retrieved": "fail",
+    "missing_from_retrieval": [
+      "Americas",
+      "124,336"
+    ],
+    "generated": "fail",
+    "missing_from_answer": [
+      "Americas",
+      "124,336"
+    ],
+    "answer": "The ten‑year summary shows that **North America** was the biggest geographic segment in FY 2023, contributing **53.4 % of total revenue**. The report does not give the rupee amount for that segment, only the percentage share.  \n\n* **Geographic segment** – a region (e.g., North America, Europe) whose revenue is reported separately.  \n* **FY 2023** – the financial year that ended on 31 March 2023.  \n\n**Answer:** North America contributed the most revenue in FY 2023, representing 53.4 % of TCS’s total revenue; the exact ₹ crore figure is not disclosed in the excerpts.",
+    "sources": [
+      {
+        "company": "tcs",
+        "year": "2023",
+        "page_number": 92
+      }
+    ],
+    "error": null,
+    "seconds": 26.7
+  },
+  {
+    "id": 8,
+    "type": "table-reasoning",
+    "question": "From Maruti Suzuki's five-year sales volume data for FY'19 to FY'23, which year had the lowest total sales volume?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      [
+        "FY21",
+        "FY 21",
+        "FY'21",
+        "FY2021",
+        "FY 2021",
+        "2020-21"
+      ],
+      "1,457,861"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "Maruti Suzuki’s total sales volume (the number of vehicles sold) was lowest in **FY 2021‑22 (FY’21)**, when the company sold **1,457,861 units**.  \n\n*“TOTAL SALES VOLUME (in units)… FY’21 … 1,457,861”*\n\n**What “total sales volume” means:** it is the count of all vehicles the company sold during the fiscal year, combining sales from all its outlets and markets.",
+    "sources": [],
+    "error": null,
+    "seconds": 30.5
+  },
+  {
+    "id": 9,
+    "type": "table-reasoning",
+    "question": "What were Maruti Suzuki's export volumes in FY'21, according to its 2022-23 report's five-year sales data?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "96,139"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "Maruti Suzuki exported **96,139 units** in FY 2021.  \n\n*The report’s five‑year sales table lists Export Sales Volume (units) as 96,139 for FY’21.",
+    "sources": [
+      {
+        "company": "maruti_suzuki",
+        "year": "2023",
+        "page_number": 111
+      }
+    ],
+    "error": null,
+    "seconds": 26.6
+  },
+  {
+    "id": 10,
+    "type": "table-reasoning",
+    "question": "Over FY2021 to FY2025, in which year was Infosys's market capitalisation highest, according to its 2024-25 report?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      [
+        "FY22",
+        "FY 22",
+        "FY2022",
+        "FY 2022",
+        "2021-22",
+        "fiscal 2022"
+      ],
+      "8,02,162"
+    ],
+    "expect_refusal": false,
+    "retrieved": "fail",
+    "missing_from_retrieval": [
+      [
+        "FY22",
+        "FY 22",
+        "FY2022",
+        "FY 2022",
+        "2021-22",
+        "fiscal 2022"
+      ],
+      "8,02,162"
+    ],
+    "generated": "fail",
+    "missing_from_answer": [
+      "8,02,162"
+    ],
+    "answer": "The excerpts you provided do not include Infosys’s actual market‑capitalisation figures for FY 2021, FY 2022, FY 2023, FY 2024 or FY 2025. They only show the “market‑capitalisation to revenues” ratio (4.0 times for both FY 2025 and FY 2024) and do not give the absolute market‑capitalisation amount for any year. Therefore, the report does not contain the information needed to identify which fiscal year had the highest market capitalisation.",
+    "sources": [],
+    "error": null,
+    "seconds": 25.4
+  },
+  {
+    "id": 11,
+    "type": "table-reasoning",
+    "question": "Did Infosys's market capitalisation rise every year from FY2021 to FY2025 in its 2024-25 report? If not, in which year did it fall and to what level?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      [
+        "FY23",
+        "FY 23",
+        "FY2023",
+        "FY 2023",
+        "2022-23",
+        "fiscal 2023"
+      ],
+      "5,92,394"
+    ],
+    "expect_refusal": false,
+    "retrieved": "fail",
+    "missing_from_retrieval": [
+      [
+        "FY23",
+        "FY 23",
+        "FY2023",
+        "FY 2023",
+        "2022-23",
+        "fiscal 2023"
+      ],
+      "5,92,394"
+    ],
+    "generated": "fail",
+    "missing_from_answer": [
+      "5,92,394"
+    ],
+    "answer": "The excerpts you provided do not include the actual market‑capitalisation figures for Infosys for FY 2021, FY 2022, FY 2023, FY 2024 or FY 2025. The only market‑related number shown is the “Market capitalization to revenues (times)” ratio, which is 4.0 times for both 2024 and 2025, but no absolute market‑capitalisation amounts are given for any year. Because the report does not contain the required market‑capitalisation values, we cannot tell whether the market capitalisation rose every year from FY 2021 to FY 2025, nor identify any year in which it may have fallen.",
+    "sources": [
+      {
+        "company": "infosys",
+        "year": "2025",
+        "page_number": 75
+      }
+    ],
+    "error": null,
+    "seconds": 30.6
+  },
+  {
+    "id": 12,
+    "type": "table-reasoning",
+    "question": "In HDFC Bank's FY25 key metrics, profit after tax grew. Did return on assets and return on equity improve or worsen versus FY24? Give the figures.",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "1.91",
+      "1.98",
+      "14.6",
+      "16.1"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "**Return on Assets (ROA)** – the percentage of profit a bank earns for each rupee of assets it holds.  \n\n- FY 25: **1.91 %**  \n- FY 24: **1.98 %**  \n\nROA fell from 1.98 % in FY 24 to 1.91 % in FY 25, so it **worsened**.  \n\n**Return on Equity (ROE)** – the percentage of profit a bank earns for each rupee of shareholders’ equity.  \n\n- FY 25: **14.6 %**  \n- FY 24: **16.1 %** (as shown in the summary table) – ROE fell, so it **worsened**.  \n\n*Note:* Another table in the report lists FY 24 ROE as **19.5 %** while still showing FY 25 ROE at **14.6 %**. Either way, the FY 25 figure is lower than the FY 24 figure, indicating a decline.  \n\n**Bottom line:** Both ROA and ROE were lower in FY 25 than in FY 24, meaning the bank’s profitability relative to its assets and equity **worsened** despite profit‑after‑tax growth.",
+    "sources": [
+      {
+        "company": "hdfc_bank",
+        "year": "2025",
+        "page_number": 5
+      },
+      {
+        "company": "hdfc_bank",
+        "year": "2025",
+        "page_number": 38
+      }
+    ],
+    "error": null,
+    "seconds": 29.9
+  },
+  {
+    "id": 13,
+    "type": "table-reasoning",
+    "question": "For HDFC Bank in FY25, which grew faster year-on-year, deposits or advances, and by what percentage did each grow?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "14.1",
+      "5.4"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "In FY 25 HDFC Bank’s **deposits grew faster** than its advances.\n\n- **Deposits** increased **14.1 %** year‑on‑year to ₹27,14,715 crore.  \n- **Advances** (loans the bank has given out) increased **5.4 %** year‑on‑year to ₹26,19,609 crore.\n\n*Deposits* are the money customers keep in the bank, while *advances* are the loans the bank extends to customers. Because the deposit growth rate (14.1 %) is higher than the advance growth rate (5.4 %), deposits grew faster in FY 25.",
+    "sources": [
+      {
+        "company": "hdfc_bank",
+        "year": "2025",
+        "page_number": 38
+      },
+      {
+        "company": "hdfc_bank",
+        "year": "2025",
+        "page_number": 15
+      }
+    ],
+    "error": null,
+    "seconds": 28.4
+  },
+  {
+    "id": 14,
+    "type": "table-reasoning",
+    "question": "In the ten-year table of Sun Pharma's 2021-22 report, what was revenue from operations in the first year shown and in FY22?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "112,999",
+      "386,545"
+    ],
+    "expect_refusal": false,
+    "retrieved": "fail",
+    "missing_from_retrieval": [
+      "112,999",
+      "386,545"
+    ],
+    "generated": "fail",
+    "missing_from_answer": [
+      "112,999",
+      "386,545"
+    ],
+    "answer": "The excerpts you provided do not include the ten‑year table that lists “Revenue from operations” for the first year shown and for FY 22. Therefore, I can’t give those figures from the document.",
+    "sources": [],
+    "error": null,
+    "seconds": 24.2
+  },
+  {
+    "id": 15,
+    "type": "disambiguation",
+    "question": "In FY2024, was TCS's other income higher on a standalone or a consolidated basis? Give both figures.",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "7,273",
+      "4,422"
+    ],
+    "expect_refusal": false,
+    "retrieved": "fail",
+    "missing_from_retrieval": [
+      "7,273",
+      "4,422"
+    ],
+    "generated": "fail",
+    "missing_from_answer": [
+      "7,273",
+      "4,422"
+    ],
+    "answer": "The excerpts you provided do not include any figures for “other income” on either a standalone or a consolidated basis for FY 2024. Therefore, that information isn’t available from the supplied documents.",
+    "sources": [],
+    "error": null,
+    "seconds": 22.6
+  },
+  {
+    "id": 16,
+    "type": "disambiguation",
+    "question": "What was TCS's FY2024 consolidated profit attributable to shareholders of the company, as distinct from total profit for the year?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "45,908"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "TCS’s FY 2024 consolidated profit **attributable to shareholders** (i.e., the net profit after tax that belongs only to the company’s equity owners, excluding any share of profit that goes to non‑controlling interests) was **₹45,908 crore**.\n\nFor context, the **total profit for the year** on a consolidated basis (which includes the share of profit attributable to non‑controlling interests) was **₹46,099 crore**.\n\n* **Profit attributable to shareholders** – the portion of profit that belongs to the company’s own shareholders after tax.  \n* **Total profit for the year** – the overall profit after tax that includes both the shareholders’ share and any share owed to non‑controlling interests.",
+    "sources": [
+      {
+        "company": "tcs",
+        "year": "2024",
+        "page_number": 56
+      },
+      {
+        "company": "tcs",
+        "year": "2024",
+        "page_number": 55
+      }
+    ],
+    "error": null,
+    "seconds": 25.4
+  },
+  {
+    "id": 17,
+    "type": "disambiguation",
+    "question": "What was TCS's standalone revenue in FY2019, as opposed to its consolidated revenue?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "123,170"
+    ],
+    "expect_refusal": false,
+    "retrieved": "fail",
+    "missing_from_retrieval": [
+      "123,170"
+    ],
+    "generated": "fail",
+    "missing_from_answer": [
+      "123,170"
+    ],
+    "answer": "The excerpts only give TCS’s **consolidated** revenue for FY 2019. For example, the report shows:\n\n- Consolidated revenue of **₹ 146,463 crore** for FY 2019 (100 % of revenue)  \n- It also notes “consolidated revenues of US $20 billion for the year ended March 31 2019”\n\nNo figure for **stand‑alone** (i.e., the revenue of the parent company alone, excluding subsidiaries) is provided in the excerpts you shared. Therefore, the documents do not contain TCS’s standalone revenue for FY 2019.",
+    "sources": [
+      {
+        "company": "tcs",
+        "year": "2019",
+        "page_number": 68
+      },
+      {
+        "company": "tcs",
+        "year": "2019",
+        "page_number": 2
+      }
+    ],
+    "error": null,
+    "seconds": 30.2
+  },
+  {
+    "id": 18,
+    "type": "disambiguation",
+    "question": "What Gross NPA ratio did HDFC Bank's subsidiary HDB Financial Services report as on March 31, 2025?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "2.26"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "HDB Financial Services Limited – the HDFC Bank subsidiary – reported a **Gross Non‑Performing Asset (GNPA) ratio of 2.26 percent** as on 31 March 2025.  \n\n*What this means:* The GNPA ratio shows the share of the company’s total loan book that is classified as non‑performing (i.e., borrowers are not meeting repayment terms). A lower percentage indicates better asset quality.",
+    "sources": [
+      {
+        "company": "hdfc_bank",
+        "year": "2025",
+        "page_number": 238
+      },
+      {
+        "company": "hdfc_bank",
+        "year": "2025",
+        "page_number": 48
+      }
+    ],
+    "error": null,
+    "seconds": 24.6
+  },
+  {
+    "id": 19,
+    "type": "disambiguation",
+    "question": "HDFC Bank's 2024-25 report mentions more than one Gross NPA figure. What was the Bank's own Gross NPA ratio for FY2025, as distinct from its subsidiary's?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "1.33"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The Bank’s own Gross NPA (gross non‑performing advances ÷ gross advances) for FY 2025 was **1.33 %**.\n\n* “Gross non‑performing advances to gross advances 1.33 %” for the year ended 31 Mar 2025 is shown in the standalone financial statements.  \n* The same figure is reiterated in the performance snapshot: “Gross NPA 1.33 % of Gross Advances”.\n\n(For comparison, the overseas‑subsidiary assets also reported a 1.33 % Gross NPA ratio, but the Bank’s standalone ratio is the 1.33 % above.)\n\n**What “Gross NPA” means:** It is the proportion of all loans that are classified as non‑performing (i.e., borrowers are not meeting payment obligations) before any provisions are taken, expressed as a percentage of total gross advances.\n\n**Answer:** The Bank’s own Gross NPA ratio for FY 2025 was **1.33 %**.",
+    "sources": [],
+    "error": null,
+    "seconds": 29.5
+  },
+  {
+    "id": 20,
+    "type": "disambiguation",
+    "question": "How much did Reliance Industries Limited on its own spend on CSR in FY2024-25, compared with the group-wide CSR contribution? Give both figures.",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "1,309",
+      "2,156"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "fail",
+    "missing_from_answer": [
+      "1,309"
+    ],
+    "answer": "Reliance Industries Limited’s own CSR outlay for FY 2024‑25 was **₹ 2,156 crore**.  \n\nThe consolidated (group‑wide) CSR expenditure for the same year was also **₹ 2,156 crore**.  \n\n*The company’s CSR spend is shown in the CSR section of the annual report, while the group‑wide CSR figure appears in the consolidated financial‑statement notes.",
+    "sources": [
+      {
+        "company": "reliance",
+        "year": "2025",
+        "page_number": 22
+      },
+      {
+        "company": "reliance",
+        "year": "2025",
+        "page_number": 119
+      }
+    ],
+    "error": null,
+    "seconds": 27.6
+  },
+  {
+    "id": 21,
+    "type": "disambiguation",
+    "question": "Sun Pharma's ten-year figures are in ₹ million. What was its FY25 revenue from operations in that unit?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "525,784"
+    ],
+    "expect_refusal": false,
+    "retrieved": "fail",
+    "missing_from_retrieval": [
+      "525,784"
+    ],
+    "generated": "fail",
+    "missing_from_answer": [
+      "525,784"
+    ],
+    "answer": "Sun Pharma reported revenue from operations of **₹ 162,403 million** for FY 25. This figure is given as “Revenue in FY25” in the financial‑ratio table of the annual report. (₹ 162,403 million = ₹ 162.403 billion.)",
+    "sources": [
+      {
+        "company": "sun_pharma",
+        "year": "2025",
+        "page_number": 30
+      }
+    ],
+    "error": null,
+    "seconds": 29.5
+  },
+  {
+    "id": 22,
+    "type": "disambiguation",
+    "question": "What were Maruti Suzuki's net sales in 2022-23, and in what unit does its report state them?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "1,125,008",
+      "million"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "Maruti Suzuki reported net sales of **1,125,008 ₹ million** for FY 2022‑23. The report states the figure in **₹ million** (Indian rupees expressed in millions).",
+    "sources": [
+      {
+        "company": "maruti_suzuki",
+        "year": "2023",
+        "page_number": 17
+      }
+    ],
+    "error": null,
+    "seconds": 25.9
+  },
+  {
+    "id": 23,
+    "type": "disambiguation",
+    "question": "How much did HDFC Bank spend specifically on Parivartan projects as CSR in FY25?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "1,068"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "HDFC Bank’s CSR spending on its Parivartan projects for FY 2025 was **₹ 1,068.03 crore**. (Some sections round the amount to ₹ 1,068 crore, but the detailed figure given in the report is ₹ 1,068.03 crore.)",
+    "sources": [
+      {
+        "company": "hdfc_bank",
+        "year": "2025",
+        "page_number": 52
+      },
+      {
+        "company": "hdfc_bank",
+        "year": "2025",
+        "page_number": 167
+      },
+      {
+        "company": "hdfc_bank",
+        "year": "2025",
+        "page_number": 205
+      }
+    ],
+    "error": null,
+    "seconds": 23.8
+  },
+  {
+    "id": 24,
+    "type": "disambiguation",
+    "question": "Infosys's revenue grew 6.1% in fiscal 2025. What was the growth in constant currency terms?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "4.2"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "Infosys’s revenue rose 6.1% in fiscal 2025 when measured in the reporting currency (₹). When the effect of exchange‑rate changes is removed – i.e., using **constant‑currency** figures that compare revenues in each local currency at the same exchange rate as the prior year – the growth was **4.2%**.\n\n*Constant‑currency growth* shows the real change in sales volume and pricing, ignoring any boost or drag from currency fluctuations.",
+    "sources": [
+      {
+        "company": "infosys",
+        "year": "2025",
+        "page_number": 73
+      },
+      {
+        "company": "infosys",
+        "year": "2025",
+        "page_number": 22
+      }
+    ],
+    "error": null,
+    "seconds": 28.9
+  },
+  {
+    "id": 25,
+    "type": "multi-hop",
+    "question": "Which company in the library is ranked #88 in the Fortune Global 500, and what was its CSR contribution in FY2024-25?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "Reliance",
+      "2,156"
+    ],
+    "expect_refusal": false,
+    "retrieved": "fail",
+    "missing_from_retrieval": [
+      "2,156"
+    ],
+    "generated": "fail",
+    "missing_from_answer": [
+      "Reliance",
+      "2,156"
+    ],
+    "answer": "The excerpts you provided do not include any information about a company’s rank #88 in the Fortune Global 500, nor do they give a CSR contribution amount for FY 2024‑25. Therefore, I cannot answer that question from the available documents.",
+    "sources": [],
+    "error": null,
+    "seconds": 24.3
+  },
+  {
+    "id": 26,
+    "type": "multi-hop",
+    "question": "Which company reports 42% gender diversity in managerial positions, and what profit after tax did it report for FY2024-25?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      [
+        "Hindustan Unilever",
+        "HUL"
+      ],
+      "10,644"
+    ],
+    "expect_refusal": false,
+    "retrieved": "fail",
+    "missing_from_retrieval": [
+      [
+        "Hindustan Unilever",
+        "HUL"
+      ],
+      "10,644"
+    ],
+    "generated": "fail",
+    "missing_from_answer": [
+      [
+        "Hindustan Unilever",
+        "HUL"
+      ],
+      "10,644"
+    ],
+    "answer": "The excerpts you provided do not include any statement about a company reporting 42 percent gender diversity in managerial positions, nor do they contain profit‑after‑tax figures for the fiscal year 2024‑25.",
+    "sources": [],
+    "error": null,
+    "seconds": 21.1
+  },
+  {
+    "id": 27,
+    "type": "multi-hop",
+    "question": "Which company says it has 191 million True5G subscribers, and what was its consolidated revenue for FY2024-25?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "Reliance",
+      "10,71,174"
+    ],
+    "expect_refusal": false,
+    "retrieved": "fail",
+    "missing_from_retrieval": [
+      "Reliance",
+      "10,71,174"
+    ],
+    "generated": "fail",
+    "missing_from_answer": [
+      "Reliance",
+      "10,71,174"
+    ],
+    "answer": "The excerpts you provided do not contain any statement about a company having 191 million True5G subscribers, nor do they give a consolidated revenue figure for FY 2024‑25.",
+    "sources": [],
+    "error": null,
+    "seconds": 28.1
+  },
+  {
+    "id": 28,
+    "type": "multi-hop",
+    "question": "Which IT company in the library reported 1,882 active clients, and how many employees did it report alongside that figure?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "Infosys",
+      "3,17,240"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The IT company that reported **1,882 active clients** is **Infosys**. In the same report, Infosys also disclosed that it had **3,17,240 employees**.",
+    "sources": [
+      {
+        "company": "infosys",
+        "year": "2024",
+        "page_number": 10
+      },
+      {
+        "company": "infosys",
+        "year": "2024",
+        "page_number": 21
+      }
+    ],
+    "error": null,
+    "seconds": 19.4
+  },
+  {
+    "id": 29,
+    "type": "multi-hop",
+    "question": "Which bank in the library operates 9,455 branches, and what was its Gross NPA ratio in FY2025?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "HDFC",
+      "1.33"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The bank that has **9,455 branches** is **HDFC Bank**.  \nIn the fiscal year 2025 its **Gross NPA (non‑performing assets) ratio was 1.33 %** – this means that 1.33 % of the bank’s total advances were classified as non‑performing (i.e., borrowers were not meeting repayment terms).",
+    "sources": [
+      {
+        "company": "hdfc_bank",
+        "year": "2025",
+        "page_number": 7
+      },
+      {
+        "company": "hdfc_bank",
+        "year": "2025",
+        "page_number": 38
+      }
+    ],
+    "error": null,
+    "seconds": 28.3
+  },
+  {
+    "id": 30,
+    "type": "multi-hop",
+    "question": "The company whose SUV market share rose from 11.4% to 16.5% between March 2022 and March 2023: what was its total sales volume in FY'23?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      [
+        "Maruti",
+        "MSIL"
+      ],
+      "1,966,164"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The company is Maruti Suzuki India Ltd. Its SUV market‑share rose from **11.4 % in March 2022** to **16.5 % in March 2023**. In FY 2022‑23 the company recorded its highest‑ever **total sales volume of 1,966,164 units** (the total number of vehicles sold during the fiscal year).  \n\n*“While the overall sales of the Company increased by 20.5% in FY 2022‑23…”* – shows the SUV share rise (11.4 % → 16.5 %).  \n*“The occasion became more celebratory with the Company recording its highest‑ever annual sales volume of 1,966,164 units…”* – gives the total sales volume for FY 2023.  \n\n**Answer:** 1,966,164 units sold in FY 2023.",
+    "sources": [],
+    "error": null,
+    "seconds": 26.2
+  },
+  {
+    "id": 31,
+    "type": "cross-document",
+    "question": "TCS's 2023-24 report gives FY2023 consolidated revenue from operations as a comparative figure. What is it, and does it match the FY 2023 figure in the 2022-23 report's ten-year summary?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "2,25,458"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The 2024 (FY 2023‑24) integrated annual report shows the **consolidated “Revenue from operations” for FY 2023 (the comparative column)** as **₹ 2,25,458 crore**.\n\nThe earlier 2023 (FY 2022‑23) integrated annual report’s ten‑year summary also lists **consolidated revenue for FY 2023 as ₹ 2,25,458 crore**.\n\nSo, the FY 2023 consolidated revenue‑from‑operations figure in the 2024 report **matches exactly** the FY 2023 revenue figure reported in the 2023 report.\n\n*Revenue from operations* is the money a company earns from its core business activities before adding other income or expenses.",
+    "sources": [
+      {
+        "company": "tcs",
+        "year": "2024",
+        "page_number": 55
+      },
+      {
+        "company": "tcs",
+        "year": "2023",
+        "page_number": 73
+      }
+    ],
+    "error": null,
+    "seconds": 27.2
+  },
+  {
+    "id": 32,
+    "type": "cross-document",
+    "question": "Do Sun Pharma's 2021-22 and 2024-25 reports give the same FY22 revenue from operations? What is the figure?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "386,545"
+    ],
+    "expect_refusal": false,
+    "retrieved": "fail",
+    "missing_from_retrieval": [
+      "386,545"
+    ],
+    "generated": "fail",
+    "missing_from_answer": [
+      "386,545"
+    ],
+    "answer": "The excerpts you provided do not include a single “FY 22 revenue from operations” figure that appears in both the 2021‑22 annual report and the 2024‑25 annual report. Therefore, I can’t confirm whether the two reports give the same FY 22 revenue number, nor can I provide that figure.",
+    "sources": [],
+    "error": null,
+    "seconds": 26.6
+  },
+  {
+    "id": 33,
+    "type": "cross-document",
+    "question": "How many employees did TCS report in its 2018-19 annual report, and how many in its 2023-24 annual report?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "424,285",
+      "601,546"
+    ],
+    "expect_refusal": false,
+    "retrieved": "fail",
+    "missing_from_retrieval": [
+      "424,285"
+    ],
+    "generated": "fail",
+    "missing_from_answer": [
+      "424,285"
+    ],
+    "answer": "TCS’s 2023‑24 annual report states that it had **6,01,546 employees** in FY 2023‑24 (the total shown in the “On Health and Safety Measures” table).  \n\nThe excerpts you provided do **not contain any information about the number of employees reported in TCS’s 2018‑19 annual report**, so that figure cannot be given from the documents you shared.  \n\n**Key term explained**  \n- **Employee count** – the total number of people who are on the company’s payroll (including both men and women) at the end of the fiscal year.\n\n**Answer**  \n- 2018‑19 employee count: not available in the supplied documents.  \n- 2023‑24 employee count: 6,01,546 employees.",
+    "sources": [],
+    "error": null,
+    "seconds": 27.0
+  },
+  {
+    "id": 34,
+    "type": "cross-document",
+    "question": "What IT services attrition rate did TCS report in its 2018-19 annual report, and what rate in its 2023-24 annual report?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "11.3",
+      "12.5"
+    ],
+    "expect_refusal": false,
+    "retrieved": "fail",
+    "missing_from_retrieval": [
+      "12.5"
+    ],
+    "generated": "fail",
+    "missing_from_answer": [
+      "12.5"
+    ],
+    "answer": "- **2018‑19 annual report (FY 2019)** – TCS reported an IT‑services attrition (turnover) rate of **11.3 %**. This figure appears under “Talent Retention – Best in class attrition – 11.3 % in IT Services.” An attrition rate is the share of employees who leave the company during the year.\n\n- **2023‑24 annual report** – The excerpts you provided do not contain a specific IT‑services attrition percentage, so that information is not available from the documents supplied.",
+    "sources": [
+      {
+        "company": "tcs",
+        "year": "2019",
+        "page_number": 66
+      }
+    ],
+    "error": null,
+    "seconds": 27.9
+  },
+  {
+    "id": 35,
+    "type": "false-premise",
+    "question": "Why did Infosys's revenue decline in fiscal 2025?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "6.1"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The excerpts do not say that Infosys’s overall revenue fell in fiscal 2025. In fact, the report shows revenue **increased** to ₹1,62,990 crore, a 6.1 % rise in reported‑currency terms (and a 4.2 % rise in constant‑currency terms). The only place a “decline” is mentioned is in [1], where it says a **decline in the revenue estimates** for a single quarter caused an excess‑of‑carrying‑value write‑down of customer‑related intangibles. That decline refers to the *estimate* used for accounting, not to the company’s actual revenue for the year.\n\nSo, based on the provided excerpts, there is no indication that Infosys’s revenue declined in fiscal 2025; rather, it grew year‑on‑year.",
+    "sources": [
+      {
+        "company": "infosys",
+        "year": "2025",
+        "page_number": 293
+      },
+      {
+        "company": "infosys",
+        "year": "2025",
+        "page_number": 73
+      }
+    ],
+    "error": null,
+    "seconds": 21.9
+  },
+  {
+    "id": 36,
+    "type": "false-premise",
+    "question": "Why did HDFC Bank's deposits shrink in FY25?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "14.1"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The reports do not show a decline in deposits for FY 25. In fact, the bank’s deposits **grew 14.1 % to ₹27,14,715 crore** in the financial year ended 31 March 2025. The same growth rate is reiterated in the balance‑sheet summary, which notes a 14.1 % increase in deposits for FY 25.\n\nSo, according to the provided excerpts, HDFC Bank’s deposits did not shrink in FY 25; they increased substantially.",
+    "sources": [
+      {
+        "company": "hdfc_bank",
+        "year": "2025",
+        "page_number": 15
+      },
+      {
+        "company": "hdfc_bank",
+        "year": "2025",
+        "page_number": 38
+      }
+    ],
+    "error": null,
+    "seconds": 26.6
+  },
+  {
+    "id": 37,
+    "type": "false-premise",
+    "question": "Why did Maruti Suzuki's profit after tax fall in 2022-23?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "80,492"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The excerpts you provided do not contain any statement that Maruti Suzuki’s profit after tax fell in FY 2022‑23. In fact, the figures shown indicate that profit after tax **rose**:\n\n* In the “Financial Performance” table, profit after tax is shown as **₹ 80,492 million** for the most recent year versus **₹ 37,663 million** in the prior year, a rise of 113.7 %.  \n* The same profit‑after‑tax amount (₹ 37,663 million) appears in the standalone statement of changes in equity for FY 2022‑23, confirming the higher figure for the current year.\n\nBecause the documents only present these higher numbers and do not mention a decline, there is no information available here to explain a fall in profit after tax for FY 2022‑23.",
+    "sources": [],
+    "error": null,
+    "seconds": 26.4
+  },
+  {
+    "id": 38,
+    "type": "false-premise",
+    "question": "Why did Hindustan Unilever's profit after tax decline in FY2024-25?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "10,644"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "Hindustan Unilever’s profit after tax **did not decline** in FY 2024‑25.  \n\n- The profit‑after‑tax (PAT) reported for the year ended 31 Mar 2025 was **₹ 10,644 crores**, compared with **₹ 10,114 crores** for the year ended 31 Mar 2024. This shows an increase of about ₹ 530 crores.  \n\nWhy the PAT figure might look lower in some calculations  \n\nEven though the overall PAT rose, a few items reduced the profit that could have been higher:  \n\n1. **Exceptional items** – FY 2024‑25 recorded an exceptional charge of **₹ 422 crores**, whereas the prior year had an exceptional gain of **₹ 89 crores**. Exceptional items are one‑off gains or losses that are not part of regular operations (e.g., asset write‑downs, legal settlements).  \n\n2. **Higher tax expense** – Taxation rose to **₹ 3,656 crores** in FY 2024‑25 from **₹ 3,561 crores** in FY 2024.  \n\n3. **Inventory write‑down** – During FY 2024‑25 the company charged **₹ 189 crores** for damaged and slow‑moving inventory to the profit‑and‑loss statement, which is included in the cost of materials consumed. This reduces operating profit before tax.  \n\nThese factors offset part of the earnings, but the net effect was still a higher PAT compared with the previous year.",
+    "sources": [],
+    "error": null,
+    "seconds": 25.6
+  },
+  {
+    "id": 39,
+    "type": "false-premise",
+    "question": "Why was Sun Pharma loss-making in FY25?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "109,290"
+    ],
+    "expect_refusal": false,
+    "retrieved": "fail",
+    "missing_from_retrieval": [
+      "109,290"
+    ],
+    "generated": "fail",
+    "missing_from_answer": [
+      "109,290"
+    ],
+    "answer": "The excerpts you provided do not mention Sun Pharmaceutical Industries being loss‑making in FY 25. They report revenue growth, higher EBITDA and an adjusted net profit of ₹ 120 billion, but there is no statement indicating a loss for that year.",
+    "sources": [],
+    "error": null,
+    "seconds": 28.6
+  },
+  {
+    "id": 40,
+    "type": "false-premise",
+    "question": "Why did TCS's IT services attrition rise in FY2024?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "12.5"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The report does not say that IT‑services attrition rose in FY 2024. In fact, the Management Discussion notes that “IT services’ attrition trended down throughout the year and was 12.5 % for FY 2024.” Since the document only mentions a decline, it provides no explanation for a rise.",
+    "sources": [
+      {
+        "company": "tcs",
+        "year": "2024",
+        "page_number": 74
+      }
+    ],
+    "error": null,
+    "seconds": 20.7
+  },
+  {
+    "id": 41,
+    "type": "unanswerable",
+    "question": "What was TCS's consolidated revenue from operations in FY2025?",
+    "company": null,
+    "year": null,
+    "expected_facts": [],
+    "expect_refusal": true,
+    "retrieved": "n/a",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The excerpts you provided do not contain any figure for TCS’s consolidated revenue from operations for FY 2025. The latest revenue numbers shown are:\n\n* FY 2024 (fiscal year ended 31 March 2024): consolidated revenue of **US $29.1 billion**  \n* FY 2023: revenue from operations of **₹ 225,458 crore**\n\nSince no FY 2025 data appears in any of the excerpts, the answer cannot be given from the documents you shared.",
+    "sources": [
+      {
+        "company": "tcs",
+        "year": "2024",
+        "page_number": 2
+      },
+      {
+        "company": "tcs",
+        "year": "2023",
+        "page_number": 92
+      },
+      {
+        "company": "tcs",
+        "year": "2023",
+        "page_number": 106
+      },
+      {
+        "company": "tcs",
+        "year": "2024",
+        "page_number": 62
+      },
+      {
+        "company": "tcs",
+        "year": "2024",
+        "page_number": 75
+      },
+      {
+        "company": "tcs",
+        "year": "2023",
+        "page_number": 86
+      },
+      {
+        "company": "tcs",
+        "year": "2024",
+        "page_number": 63
+      }
+    ],
+    "error": null,
+    "seconds": 26.0
+  },
+  {
+    "id": 42,
+    "type": "unanswerable",
+    "question": "What was Maruti Suzuki's total sales volume in FY2024-25?",
+    "company": null,
+    "year": null,
+    "expected_facts": [],
+    "expect_refusal": true,
+    "retrieved": "n/a",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The excerpts you provided do not include Maruti Suzuki’s total sales volume for FY 2024‑25. None of the listed tables or narrative sections contain a figure for that fiscal year.",
+    "sources": [],
+    "error": null,
+    "seconds": 26.9
+  },
+  {
+    "id": 43,
+    "type": "unanswerable",
+    "question": "What was Asian Paints' revenue in FY2024?",
+    "company": null,
+    "year": null,
+    "expected_facts": [],
+    "expect_refusal": true,
+    "retrieved": "n/a",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The excerpts you provided are all from Tata Consultancy Services’ (TCS) 2024 annual report and do not contain any information about Asian Paints’ revenue for FY 2024. Therefore, I cannot give you that figure from the documents you shared.",
+    "sources": [],
+    "error": null,
+    "seconds": 20.8
+  },
+  {
+    "id": 44,
+    "type": "unanswerable",
+    "question": "What was HDFC Bank's Gross NPA ratio in FY2019?",
+    "company": null,
+    "year": null,
+    "expected_facts": [],
+    "expect_refusal": true,
+    "retrieved": "n/a",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The excerpts you shared only provide the Gross NPA (non‑performing assets) ratio for recent years—FY 23 (1.33 %), FY 24 (1.33 %) and FY 25 (1.33 %). They do not contain any data for FY 2019, so the Gross NPA ratio for that year isn’t available in the documents you provided.",
+    "sources": [],
+    "error": null,
+    "seconds": 26.1
+  },
+  {
+    "id": 45,
+    "type": "unanswerable",
+    "question": "What was Infosys's revenue in fiscal 2019?",
+    "company": null,
+    "year": null,
+    "expected_facts": [],
+    "expect_refusal": true,
+    "retrieved": "n/a",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The excerpts you provided do not include Infosys’s revenue figure for fiscal 2019, so I can’t give that number from the documents you shared.",
+    "sources": [],
+    "error": null,
+    "seconds": 27.2
+  },
+  {
+    "id": 46,
+    "type": "unanswerable",
+    "question": "What revenue guidance did Sun Pharma give for FY2027?",
+    "company": null,
+    "year": null,
+    "expected_facts": [],
+    "expect_refusal": true,
+    "retrieved": "n/a",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "The excerpts you provided do not contain any statement about Sun Pharma’s revenue guidance for FY 2027.",
+    "sources": [],
+    "error": null,
+    "seconds": 28.5
+  },
+  {
+    "id": 47,
+    "type": "synthesis",
+    "question": "What is Hindustan Unilever's total dividend per share for FY2024-25, and how is it split between the interim and final dividends?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "53",
+      "24",
+      "19"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "Hindustan Unilever’s total dividend for the financial year 2024‑25 is **₹53 per share**.\n\n**How the ₹53 per share is broken down**\n\n| Dividend type | Amount per share |\n|---------------|-----------------|\n| Interim dividend (paid during the year) | **₹19** |\n| Final dividend (recommended by the Board) | **₹24** |\n| Special dividend (one‑off) | **₹10** |\n| **Total** | **₹53** |\n\nSo, the regular (interim + final) dividend adds up to **₹19 + ₹24 = ₹43 per share**, and the extra special dividend of ₹10 brings the overall payout to ₹53 per share.\n\n*Simple note:* a **dividend** is a payment a company makes to its shareholders out of its profits. An **interim dividend** is paid part‑way through the financial year, while a **final dividend** is paid after the year ends and the full results are known.",
+    "sources": [],
+    "error": null,
+    "seconds": 23.7
+  },
+  {
+    "id": 48,
+    "type": "synthesis",
+    "question": "For Reliance in FY2024-25, give consolidated revenue, EBITDA and net profit, with the year-on-year growth of each.",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "10,71,174",
+      "1,83,422",
+      "81,309",
+      "7.1",
+      "2.9"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "**Consolidated figures for FY 2024‑25 (the year ended 31 March 2025)**  \n\n| Metric (consolidated) | Amount | Year‑on‑year growth |\n|-----------------------|--------|---------------------|\n| **Revenue** | ₹ 10,71,174 crore | **+7.1 %** versus FY 2023‑24 |\n| **EBITDA** (Earnings Before Interest, Taxes, Depreciation & Amortisation) | ₹ 1,83,422 crore | **+2.9 %** versus FY 2023‑24 |\n| **Net profit** (PAT – profit after tax) | ₹ 81,309 crore | **+2.9 %** versus FY 2023‑24 |\n\n*What the terms mean*  \n- **Revenue** is the total amount earned from selling goods and services before any costs are deducted.  \n- **EBITDA** shows operating profitability by removing interest, tax, depreciation and amortisation expenses, giving a view of core business performance.  \n- **Net profit (PAT)** is the profit left after all expenses, interest, taxes and other charges have been deducted.",
+    "sources": [
+      {
+        "company": "reliance",
+        "year": "2025",
+        "page_number": 5
+      },
+      {
+        "company": "reliance",
+        "year": "2025",
+        "page_number": 4
+      }
+    ],
+    "error": null,
+    "seconds": 27.8
+  },
+  {
+    "id": 49,
+    "type": "synthesis",
+    "question": "Summarise TCS's FY2024 workforce: total employees, IT services attrition, share of women, and number of nationalities.",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "601,546",
+      "12.5",
+      "35.6",
+      "152"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "**TCS’s FY 2024 workforce**\n\n| Item | Figure (as reported) |\n|------|----------------------|\n| **Total employees** | 601,546 employees |\n| **IT‑services attrition** | 12.5 % (LTM attrition) |\n| **Share of women** | 35.6 % of the workforce |\n| **Number of nationalities** | 152 nationalities represented |\n\n**What the terms mean**\n\n* **IT‑services attrition** – the percentage of employees who left the company’s IT‑services business during the last twelve months. It is a measure of turnover.  \n* **Share of women** – the proportion of the total employee base that are female, expressed as a percentage.  \n\nThese numbers are taken directly from TCS’s 2024 annual report: the employee count, women’s share and nationalities are listed in the management discussion and the CEO’s letter, while the 12.5 % attrition figure appears in the workforce‑performance sections.",
+    "sources": [
+      {
+        "company": "tcs",
+        "year": "2024",
+        "page_number": 72
+      },
+      {
+        "company": "tcs",
+        "year": "2024",
+        "page_number": 18
+      },
+      {
+        "company": "tcs",
+        "year": "2024",
+        "page_number": 9
+      },
+      {
+        "company": "tcs",
+        "year": "2024",
+        "page_number": 74
+      }
+    ],
+    "error": null,
+    "seconds": 25.8
+  },
+  {
+    "id": 50,
+    "type": "synthesis",
+    "question": "For Hindustan Unilever in FY2024-25, what were the EBITDA margin and profit after tax, and how did profit after tax change year-on-year?",
+    "company": null,
+    "year": null,
+    "expected_facts": [
+      "23.5",
+      "10,644"
+    ],
+    "expect_refusal": false,
+    "retrieved": "pass",
+    "missing_from_retrieval": [],
+    "generated": "pass",
+    "missing_from_answer": [],
+    "answer": "**EBITDA margin (FY 2024‑25)**  \n- The company reported an EBITDA margin of **23.5 %** for the year ended 31 March 2025.  \n\n**Profit after tax (FY 2024‑25)**  \n- Profit after tax was **₹10,644 crore** for the same year.  \n\n**Year‑on‑year change in profit after tax**  \n- The profit after tax **rose by about 5 %** compared with the prior year (FY 2023‑24).  \n\n**What the terms mean**  \n- **EBITDA margin** – the proportion of earnings before interest, tax, depreciation and amortisation (EBITDA) relative to total turnover; it shows how much of sales is left after operating costs but before financing and tax items.  \n- **Profit after tax** – the net profit that remains after all expenses, interest and taxes have been deducted; it is the bottom‑line earnings available to shareholders.",
+    "sources": [
+      {
+        "company": "hindustan_unilever",
+        "year": "2025",
+        "page_number": 52
+      },
+      {
+        "company": "hindustan_unilever",
+        "year": "2025",
+        "page_number": 14
+      },
+      {
+        "company": "hindustan_unilever",
+        "year": "2025",
+        "page_number": 61
+      }
+    ],
+    "error": null,
+    "seconds": 27.9
+  }
+]

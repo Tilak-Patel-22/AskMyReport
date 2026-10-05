@@ -5,6 +5,7 @@ Run: python src/vectorstore.py
 """
 import pickle
 import time
+from functools import lru_cache
 from pathlib import Path
 
 import chromadb
@@ -14,13 +15,18 @@ PICKLE = BACKEND / "data" / "chunks" / "all_embeddings.pkl"
 BATCH = 500
 
 
-def get_collection():
-    client = chromadb.PersistentClient(path=str(BACKEND / "vectorstore"))
+@lru_cache(maxsize=1)
+def client():
+    return chromadb.PersistentClient(path=str(BACKEND / "vectorstore"))  # one client per process, shared by collections
+
+
+def get_collection(name="askmyreport"):
+    """"askmyreport" = the report library; "uploads" = user-uploaded PDFs, kept apart so library searches never see them."""
     # embedding_function=None: we always pass our own bge vectors, so chroma never loads its default model
     # ef_search 500 (default 100): with a company/year filter the default HNSW search missed true top hits
     # (TCS FY2024 revenue chunk) and varied between runs; 500 matches exact brute-force search at ~0.2s/query
-    return client.get_or_create_collection(
-        "askmyreport", embedding_function=None, configuration={"hnsw": {"space": "cosine", "ef_search": 500}}
+    return client().get_or_create_collection(
+        name, embedding_function=None, configuration={"hnsw": {"space": "cosine", "ef_search": 500}}
     )
 
 

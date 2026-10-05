@@ -8,7 +8,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from groq import Groq
 
-from retrieve import retrieve
+from retrieve import YEARS, retrieve
 
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 client = Groq()  # reads GROQ_API_KEY loaded from .env
@@ -18,10 +18,11 @@ MODEL = "openai/gpt-oss-120b"
 TOP_K = 8  # Reliance's CSR answer ranked #7 in Stage 5, outside the default top 5
 DISPLAY = {"tcs": "TCS", "hdfc_bank": "HDFC Bank"}  # others read fine as Title Case
 
-SYSTEM = """You answer questions about company annual reports using ONLY the numbered excerpts given to you.
+SYSTEM = """You answer questions about documents (company annual reports, or a PDF the user uploaded) using ONLY the
+numbered excerpts given to you.
 Rules:
 - Use only facts and numbers that appear in the excerpts. Never use outside knowledge, never guess, never make up example numbers.
-- If the excerpts do not contain the answer, say plainly that the reports provided don't contain this information. Do not guess.
+- If the excerpts do not contain the answer, say plainly that the documents provided don't contain this information. Do not guess.
 - Explain in simple, plain English for someone with no finance background: briefly say what any finance term means.
 - Quote real figures exactly as written, with units (₹ crore, %, etc.) and the year they belong to.
 - Never convert figures into other units (million, billion, dollars) and never do arithmetic: copy numbers exactly as
@@ -34,15 +35,21 @@ Rules:
 
 
 def name(company):
+    """Display name: library ids become "HDFC Bank" / "Sun Pharma"; an uploaded file's name is shown as-is."""
+    if company not in YEARS:
+        return company
     return DISPLAY.get(company, company.replace("_", " ").title())
+
+
+def label(c):
+    """"HDFC Bank, 2025 annual report, page 8" for library chunks; "my-file.pdf, page 8" for uploads (no year)."""
+    report = f", {c['year']} annual report" if c["year"] else ""
+    return f"{name(c['company'])}{report}, page {c['page_number']}"
 
 
 def excerpts(chunks):
     """Numbered, labelled chunk texts for an LLM prompt (shared with charts.py)."""
-    return "\n\n".join(
-        f"[{i}] {name(c['company'])}, {c['year']} annual report, page {c['page_number']}:\n{c['text']}"
-        for i, c in enumerate(chunks, 1)
-    )
+    return "\n\n".join(f"[{i}] {label(c)}:\n{c['text']}" for i, c in enumerate(chunks, 1))
 
 
 def split_sources(text: str, n_excerpts: int) -> tuple[str, list[int]]:

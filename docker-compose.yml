@@ -1,0 +1,22 @@
+# docker compose up --build   ->  UI on http://localhost:5173, API on http://localhost:8000
+# Needs backend/.env (GROQ_API_KEY) and a built index in backend/data + backend/vectorstore (see README).
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    env_file: backend/.env
+    volumes:
+      - ./backend/data:/app/data
+      - ./backend/vectorstore:/app/vectorstore
+      - hf-cache:/root/.cache/huggingface # bge models (~1.2 GB) download once, on the first question
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:80" # the API allows CORS from http://localhost:5173
+    depends_on:
+      - backend
+
+volumes:
+  hf-cache:

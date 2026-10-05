@@ -109,28 +109,36 @@ def table_chunks(table):
     return [f"{header}\n" + "\n".join(p) for p in parts] or [whole]
 
 
+def doc_chunks(doc, prefix=None):
+    """All chunks of one parsed document (text + table chunks, in page order) and how many came from tables.
+    Used for the report library (main) and for user-uploaded PDFs (uploads.py)."""
+    texts = text_chunks(doc["pages"])
+    tables = []
+    for p in doc["pages"]:
+        head = f"[{title}]\n" if (title := page_title(p)) else ""
+        tables += [(p["page_number"], head + part) for t in p["tables"] for part in table_chunks(t)]
+    items = sorted(texts + tables, key=lambda x: x[0])  # stable sort: page order, text before its page's tables
+    prefix = prefix or f"{doc['company']}_{doc['year']}"
+    chunks = [
+        {"company": doc["company"], "year": doc["year"], "page_number": pg, "chunk_id": f"{prefix}_{i}", "text": t}
+        for i, (pg, t) in enumerate(items)
+    ]
+    return chunks, len(tables)
+
+
 def main():
     total = n_tables = tokens = 0
     for f in sorted(PARSED.glob("*/*.json")):
         doc = json.loads(f.read_text(encoding="utf-8"))
-        texts = text_chunks(doc["pages"])
-        tables = []
-        for p in doc["pages"]:
-            head = f"[{title}]\n" if (title := page_title(p)) else ""
-            tables += [(p["page_number"], head + part) for t in p["tables"] for part in table_chunks(t)]
-        items = sorted(texts + tables, key=lambda x: x[0])  # stable sort: page order, text before its page's tables
+        chunks, n_doc_tables = doc_chunks(doc)
         prefix = f"{doc['company']}_{doc['year']}"
-        chunks = [
-            {"company": doc["company"], "year": doc["year"], "page_number": pg, "chunk_id": f"{prefix}_{i}", "text": t}
-            for i, (pg, t) in enumerate(items)
-        ]
         out = CHUNKS / f.parent.name / f.name
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(chunks, ensure_ascii=False), encoding="utf-8")
         total += len(chunks)
-        n_tables += len(tables)
+        n_tables += n_doc_tables
         tokens += sum(ntok(c["text"]) for c in chunks)
-        print(f"{prefix}: {len(chunks)} chunks ({len(tables)} tables)")
+        print(f"{prefix}: {len(chunks)} chunks ({n_doc_tables} tables)")
 
     print("\n===== SUMMARY =====")
     print(f"Total chunks      : {total}")
