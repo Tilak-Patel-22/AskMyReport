@@ -5,6 +5,7 @@ Run from backend/:  python eval/run_evaluation.py [questions.json] [--retry-erro
   --retry-errors   keep last run's scored questions and re-ask only the ones whose LLM call errored or was skipped
   --retrieval-only score retrieval for every question without calling the LLM (no Groq tokens); generation = "error"
 Calls retrieve() and generate_answer() directly (no API server needed) and prints a summary to paste into a report.
+Retrieval is scored on the first search only; follow-up searches the LLM asks for show in "searches".
 Substring matching is a fast first pass, not a full correctness judgement: read the failure list by hand.
 
 Question fields: question, type, company, year, expected_facts. A fact may be a list of accepted spellings
@@ -21,13 +22,15 @@ import time
 import unicodedata
 from pathlib import Path
 
-from groq import RateLimitError
+from openai import RateLimitError
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent / "src"))  # the pipeline modules use flat imports ("from retrieve import ...")
 
-from generate import TOP_K, generate_answer
+from generate import PROVIDERS, TOP_K, generate_answer
 from retrieve import retrieve
+
+del PROVIDERS[1:]  # score Groq's model only: no silent fallback to Gemini/Ollama mid-run, and its rate limits reach answer()
 
 # how an answer says "the documents don't have this" (prompt: "say plainly that the documents provided don't contain …")
 REFUSALS = (
@@ -59,11 +62,11 @@ class DailyLimit(Exception):
     pass
 
 
-def answer(question, chunks):
+def answer(q, chunks):
     """generate_answer, waiting out Groq per-minute limits; raises DailyLimit when the daily token cap is reached."""
     for _ in range(5):
         try:
-            return generate_answer(question, chunks)
+            return generate_answer(q["question"], chunks, q["company"], q["year"])
         except RateLimitError as e:
             msg = str(e)
             wait = re.search(r"try again in (?:(\d+)h)?(?:(\d+)m)?([\d.]+)s", msg)
@@ -95,11 +98,11 @@ def main():
         chunks = retrieve(q["question"], q["company"], q["year"], top_k=TOP_K)
         refusal = q.get("expect_refusal", False)
         not_retrieved = [] if refusal else missing(q["expected_facts"], [c["text"] for c in chunks])
-        reply, sources, error = "", [], skip_llm
+        reply, sources, searches, error = "", [], [], skip_llm
         if not error:
             try:
-                out = answer(q["question"], chunks)
-                reply, sources = out["answer"], out["sources"]
+                out = answer(q, chunks)
+                reply, sources, searches = out["answer"], out["sources"], out["searches"]
             except DailyLimit as e:  # stop calling the LLM for the rest of this run
                 error = skip_llm = f"skipped: Groq daily token limit ({str(e)[:80]}…)"
             except Exception as e:  # network, bad key, …: counts as not scored, the run continues
@@ -120,6 +123,7 @@ def main():
             "missing_from_answer": not_answered,
             "answer": reply,
             "sources": sources,
+            "searches": searches,
             "error": error,
             "seconds": round(time.time() - start, 1),
         })

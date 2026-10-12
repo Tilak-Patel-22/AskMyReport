@@ -1,12 +1,13 @@
 """Parse data/raw_pdfs/<company>/<year>.pdf -> data/parsed/<company>/<year>.json.
 
-Text comes from PyMuPDF, tables from pdfplumber. Bad pages are logged and skipped.
+Text comes from PyMuPDF, tables from pdfplumber, section headings from font size. Bad pages are logged and skipped.
 Run: python src/ingest.py
 """
 import json
 import logging
 import re
 import unicodedata
+from collections import Counter
 from pathlib import Path
 
 import pdfplumber
@@ -38,14 +39,31 @@ def fix_rupee(font, text):
     return RUPEE_KEYS.sub("₹", text) if "rupee" in font.lower() else text
 
 
-def page_text(page):
-    # rebuilt from spans so rupee-font characters can be fixed; one PyMuPDF block ≈ one paragraph,
-    # separated by a blank line so chunk.py can split on paragraphs
-    return "\n\n".join(
-        "\n".join("".join(fix_rupee(s["font"], s["text"]) for s in line["spans"]) for line in block["lines"])
-        for block in page.get_text("dict")["blocks"]
-        if block.get("lines")
-    )
+def page_blocks(page):
+    """[(text, font size)] per PyMuPDF block (≈ one paragraph); size = the rounded size most of its characters use.
+    Text is rebuilt from spans so rupee-font characters can be fixed."""
+    out = []
+    for block in page.get_text("dict")["blocks"]:
+        lines = block.get("lines", [])
+        sizes = Counter()
+        for s in (s for line in lines for s in line["spans"]):
+            sizes[round(s["size"])] += len(s["text"].strip())
+        if sizes.total():
+            text = "\n".join("".join(fix_rupee(s["font"], s["text"]) for s in line["spans"]) for line in lines)
+            out.append((text, sizes.most_common(1)[0][0]))
+    return out
+
+
+def mark_headings(pages):
+    """Headings = blocks in a bigger font than the body text (the size most characters use), running headers included.
+    Saved per page; chunk.py carries the last one onto later pages that have none."""
+    sizes = Counter()
+    for p in pages:
+        for t, s in p["blocks"]:
+            sizes[s] += len(t)
+    body = max(sizes, key=sizes.get, default=0)
+    for p in pages:
+        p["headings"] = [" ".join(clean(t).split()) for t, s in p.pop("blocks") if s > body]
 
 
 def parse_pdf(pdf):
@@ -55,7 +73,8 @@ def parse_pdf(pdf):
         for i, page in enumerate(doc):
             n = i + 1
             try:
-                text = clean(page_text(page))
+                blocks = page_blocks(page)
+                text = clean("\n\n".join(t for t, _ in blocks))  # blank line between blocks = paragraph break
             except Exception as e:
                 warn(f"{name} page {n}: text extraction failed ({e})")
                 continue
@@ -73,7 +92,8 @@ def parse_pdf(pdf):
             except Exception as e:
                 tables = []
                 warn(f"{name} page {n}: table extraction failed, text kept ({e})")
-            pages.append({"page_number": n, "text": text, "tables": tables})
+            pages.append({"page_number": n, "text": text, "tables": tables, "blocks": blocks})
+    mark_headings(pages)
     return {"company": pdf.parent.name, "year": pdf.stem, "pages": pages}
 
 

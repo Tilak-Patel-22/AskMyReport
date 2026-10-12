@@ -14,7 +14,10 @@ Every expected answer below was checked against the source text before being use
 
 | | Retrieval | Generation | Overall |
 |---|---|---|---|
-| All 21 questions | **95%** | **90%** | **90%** |
+| All 21 questions | **90%** | **90%** | **90%** |
+
+Retrieval is from the current index. Generation and overall are from the run before the section and unit labels were
+added; re-scoring them is waiting on the Groq daily limit.
 
 **Benchmark B: 50 complex questions**: `backend/eval/eval_complex.json`. Table reasoning over 10-year summaries,
 standalone-vs-consolidated and parent-vs-subsidiary traps, multi-hop questions that never name the company, figures
@@ -47,6 +50,7 @@ retrieving.
 | + stronger reranker (bge-reranker-base) | 86% | ~12 s |
 | + candidate pool tuned from 30+30 to 20+20 | **95%** | ~6.5 s |
 | + reranker input capped at 384 tokens | **95%** | ~18% faster than the row above in a side-by-side run |
+| + section and unit labels (fixes for uploaded PDFs, see below) | 90% | unchanged |
 
 ## How it works
 
@@ -65,7 +69,7 @@ flowchart LR
     V --> R
     B --> R
     R --> K["Rerank<br/>BAAI/bge-reranker-base"]
-    K --> G["Answer from excerpts only<br/>Groq · gpt-oss-120b"]
+    K --> G["Answer from excerpts only<br/>Groq gpt-oss-120b, falling back to<br/>Gemini, then local Ollama"]
     G --> A["Answer + page sources + chart"]
   end
 ```
@@ -78,12 +82,25 @@ flowchart LR
   reads 512, which brought truncation down to 0.4%.
 - **Heading context in every chunk.** A subsidiary's "GNPA stood at 1.90%" was being reported as HDFC Bank's own
   figure. Prefixing chunks with `[page title > nearest heading]` stopped that misattribution.
+- **Section headings and units in every chunk's label.** In an uploaded JPMorgan 10-K, "Net income was $17.6 billion"
+  sits a page after the "Consumer & Community Banking" heading, so it was answered as a second firm-wide profit next to
+  the real $58.5 billion. Table rows far below "(In millions)" were quoted as bare dollars ("$ 58,471"). Headings are
+  now found by font size (bigger than the body text) and carried onto later pages that have none, the page's unit
+  caption is added to the label, and the prompt says what the label means. Benchmark B retrieval didn't change;
+  Benchmark A lost one borderline question (the chunk it needs now ranks 9th, just outside the top 8).
 - **Exact vector search under filters.** With a company/year filter, Chroma's default HNSW search (`ef_search=100`)
   missed true nearest neighbours and varied between runs. `ef_search=500` matches brute-force results at ~0.2 s.
 - **Per-company retrieval for comparisons.** "TCS vs Infosys" used to return 7 Infosys chunks and 1 TCS chunk.
   Each company is now searched and reranked separately, then given equal slots.
 - **Hybrid search + reranker tuning**, as in the table above. int8 quantisation of the reranker was tested: it was
   2× faster but dropped retrieval to 76%, so it is not used.
+- **Follow-up search for "why" questions.** A document's reason for a change usually sits away from the figures the
+  question matches. Apple's $10.2B EU tax charge ranked 9th for "why did profit fall when sales grew?", and
+  JPMorgan's "net income up 18%" overview never reached the reranker. So for causal questions the LLM first reads the
+  excerpts and names what's missing (e.g. "reason Apple's income tax rose"), and up to 2 searches with a 2× candidate
+  pool add their chunks before it answers. Without this the model invented causes from other figures ("operating
+  expenses rose"). A search *tool* was tried first: gpt-oss mostly didn't call it, and when the call was required
+  Groq rejected its reply.
 - **Citations that can't be invented.** The LLM cites excerpt numbers; code maps them to company / year / page, so a
   page number in a citation always comes from the index.
 - **Uploads stay separate.** A user's PDF goes through the same pipeline into its own Chroma collection with its own
@@ -92,7 +109,7 @@ flowchart LR
 ## Tech stack
 
 **Retrieval & ML:** Sentence-Transformers (bge-small-en-v1.5, bge-reranker-base), ChromaDB, rank-bm25, tiktoken
-**LLM:** Groq API (openai/gpt-oss-120b)
+**LLM:** Groq API (openai/gpt-oss-120b); if it fails (rate limit, bad key, outage) Gemini, then a local Ollama model (llama3.1 8B), all through the OpenAI SDK
 **Data:** PyMuPDF, pdfplumber
 **API:** FastAPI, SQLite (chat history)
 **Web UI:** React + TypeScript (Vite), Recharts, GSAP
@@ -108,7 +125,7 @@ backend/
     embed.py        bge-small embeddings                        -> data/chunks/all_embeddings.pkl
     vectorstore.py  load embeddings into ChromaDB               -> vectorstore/
     retrieve.py     company/year detection, dense + BM25, rerank
-    generate.py     grounded answer + source mapping (Groq)
+    generate.py     grounded answer + source mapping (Groq -> Gemini -> Ollama)
     charts.py       chart data for trend / comparison questions
     uploads.py      index a user-uploaded PDF
     api.py          FastAPI: /ask /upload /history /companies /health
@@ -176,14 +193,20 @@ python eval/run_evaluation.py eval/eval_complex.json   # Benchmark B
 
 Each question scores **retrieval** (is a chunk containing every expected fact in the top 8?) and **generation** (does
 the answer contain them?) separately, so a failure points at search or at the LLM. Questions the documents can't
-answer pass only if the answer says so.
+answer pass only if the answer says so. The benchmarks always use Groq (no fallback), so scores stay comparable.
 
 ## Limitations
 
 - **CPU latency.** Retrieval takes ~6.5 s for a single company and ~13.5 s for a two-company comparison. Groq
-  response time on the free tier varies from about 1 s to 25 s, so a full answer usually takes 10–30 s.
+  response time on the free tier varies from about 1 s to 25 s, so a full answer usually takes 10–30 s. "Why"
+  questions add an LLM call and two wider searches: ~35–45 s in all.
+- **Multi-part questions without "why" wording** ("which company… and how much…") still get a single search; the
+  follow-up step only triggers on causal wording.
 - **Groq free tier.** The limit is 8K tokens/minute and 200K tokens/day, and one answer uses ~4K. A full run of
-  Benchmark B takes about a day of quota.
+  Benchmark B takes about a day of quota. Past the limit, answers come from Gemini or the local Ollama model
+  (llama3.1 8B on an RTX 4060: ~5 s warm, ~18 s on the first call while it loads), which follow the format less
+  strictly. Inside Docker, `localhost:11434` is the container itself, so the Ollama fallback only works when the API
+  runs on the host.
 - **Uploads.** Scanned (image-only) PDFs aren't supported, since there is no OCR. A 300-page report takes 1–3
   minutes to index.
 - **Scoring.** The benchmarks check that the expected figures appear in the answer, not whether the explanation

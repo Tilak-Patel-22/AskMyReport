@@ -18,7 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from groq import APIError
+from openai import APIError
 from pydantic import BaseModel
 
 import uploads
@@ -84,7 +84,7 @@ def companies():
 
 
 @app.post("/ask")
-def ask(req: AskRequest):  # plain def: models + Groq calls block, so FastAPI runs this in a worker thread
+def ask(req: AskRequest):  # plain def: models + LLM calls block, so FastAPI runs this in a worker thread
     query = (req.query or "").strip()
     if not query:
         raise HTTPException(400, "query is required and must not be empty")
@@ -103,10 +103,10 @@ def ask(req: AskRequest):  # plain def: models + Groq calls block, so FastAPI ru
 
     try:
         # the answer and the chart are independent LLM calls on the same chunks: run them side by side
-        answer_job = llm_pool.submit(generate_answer, query, chunks)
+        answer_job = llm_pool.submit(generate_answer, query, chunks, req.company, req.year, req.upload_id)
         chart = maybe_extract_chart_data(query, chunks)
         result = answer_job.result()
-    except APIError as e:  # Groq down / rate-limited / bad key
+    except APIError as e:  # every LLM provider failed (Groq, Gemini, Ollama)
         raise HTTPException(502, f"LLM call failed: {e}") from e
     response = {"answer": result["answer"], "sources": result["sources"], "chart": chart}
 

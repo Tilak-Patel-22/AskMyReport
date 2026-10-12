@@ -6,7 +6,7 @@ Run: python src/charts.py   (manual test)
 import json
 import re
 
-from generate import MODEL, client, excerpts
+from generate import call_llm, excerpts
 
 CHART_WORDS = re.compile(
     r"\b(trend\w*|compar\w*|grow\w*|grew|over the years|year[- ]wise|year[- ]on[- ]year|yoy|chart|graph|plot|vs|versus)\b",
@@ -36,13 +36,12 @@ def plain(v):
 def maybe_extract_chart_data(query: str, retrieved_chunks: list) -> dict | None:
     if not needs_chart(query):
         return None  # plain factual question: no LLM call
-    resp = client.chat.completions.create(
-        model=MODEL,
-        temperature=0,
-        messages=[
+    resp = call_llm(
+        [
             {"role": "system", "content": SYSTEM},
             {"role": "user", "content": f"Excerpts:\n\n{excerpts(retrieved_chunks)}\n\nQuestion: {query}"},
         ],
+        temperature=0,
     )
     m = re.search(r"\{.*\}", resp.choices[0].message.content or "", re.S)  # skips ```json fences / text around it
     try:

@@ -2,7 +2,8 @@
 
 Text: ~400-token chunks with 80-token overlap, cut at paragraph > sentence > word boundaries.
 Tables: one chunk per table; tables over SIZE split on row boundaries with the header repeated.
-Every chunk is prefixed with "[page title > nearest heading]" (tables: page title) for context.
+Every chunk is prefixed with "[page title > nearest heading]" (tables: page title) for context, plus the section
+heading carried from an earlier page when its page has none of its own.
 Run: python src/chunk.py
 """
 import json
@@ -70,24 +71,52 @@ def page_title(page):
     return next((s for s in paragraphs(page) if is_heading(s)), "")
 
 
+# a table's unit caption: "(In millions, except ...)", "($ in millions)", "(₹ crore)": the unit follows "in" or a currency
+# sign, and there are no digits, so "(₹ 2,40,893 crore)" and "(Rupees Forty Lakhs only)" in prose aren't captions
+UNIT = re.compile(
+    r"\([^()\d]*?(?:\bin\s+|[₹$]\s*|\brs\.?\s*)(?:[₹$]\s*)?(?:millions|billions|thousands|crores?|lakhs?)\b[^()\d]*\)", re.I
+)
+
+
+def page_unit(page):
+    """The page's first unit caption cut at its first comma, e.g. "(In millions)"; "" if none. Rows further down a
+    table never repeat it, so without it "Net income $ 58,471" reads as dollars."""
+    m = UNIT.search(page["text"])
+    return " ".join(m.group(0).split(",")[0].rstrip(")").split()) + ")" if m else ""
+
+
+def path(*parts):
+    """'[a > b]' from the non-empty, distinct parts; '' if none."""
+    joined = " > ".join(dict.fromkeys(x for x in parts if x))
+    return f"[{joined}]\n" if joined else ""
+
+
 def text_chunks(pages):
-    """[(page_number, text)] running continuously across pages; page_number = page the chunk starts on.
-    Each chunk starts with "[page title > nearest heading above it]" so e.g. a subsidiary's figures keep their context."""
-    pieces = []
+    """(text chunks, table chunks), each [(page_number, text)]. Text runs continuously across pages; page_number = page
+    the chunk starts on. Each chunk starts with "[page title > nearest heading above it]" (tables: "[page title]") so
+    e.g. a subsidiary's figures keep their context. A page with no big-font heading of its own (ingest "headings") also
+    gets the last one from an earlier page in front: a segment's figures three pages into the segment still name it.
+    A page with a big running header ("Notes forming part of ...") has its own, so an old section can't spread over it.
+    The page's unit caption ("(In millions)") goes last in the label."""
+    pieces, tables, section = [], [], ""
     for p in pages:
+        paras = paragraphs(p)
+        own = [s for s in paras if s in p.get("headings", ()) and is_heading(s)]
+        carried = "" if own else section
+        section = own[-1] if own else section
         title = heading = page_title(p)
-        for para in paragraphs(p):
+        unit = page_unit(p)
+        for para in paras:
             heading = para if is_heading(para) else heading
-            context = title if heading == title else f"{title} > {heading}"
-            pieces += [(p["page_number"], s, ntok(s), context) for s in fit(para)]
+            pieces += [(p["page_number"], s, ntok(s), path(carried, title, heading, unit)) for s in fit(para)]
+        tables += [(p["page_number"], path(carried, title, unit) + part) for t in p["tables"] for part in table_chunks(t)]
 
     out, prev = [], ""
     for g in pack([(p, p[2]) for p in pieces], BODY):
         body = "\n".join(p[1] for p in g)
-        head = f"[{g[0][3]}]\n" if g[0][3] else ""
-        out.append((g[0][0], head + (f"{tail(prev)}\n{body}" if prev else body)))
+        out.append((g[0][0], g[0][3] + (f"{tail(prev)}\n{body}" if prev else body)))
         prev = body
-    return out
+    return out, tables
 
 
 AMOUNT = re.compile(r"\d[,.]\d")  # 12,50,000 or 58.2 -> a data row, not a header
@@ -112,11 +141,7 @@ def table_chunks(table):
 def doc_chunks(doc, prefix=None):
     """All chunks of one parsed document (text + table chunks, in page order) and how many came from tables.
     Used for the report library (main) and for user-uploaded PDFs (uploads.py)."""
-    texts = text_chunks(doc["pages"])
-    tables = []
-    for p in doc["pages"]:
-        head = f"[{title}]\n" if (title := page_title(p)) else ""
-        tables += [(p["page_number"], head + part) for t in p["tables"] for part in table_chunks(t)]
+    texts, tables = text_chunks(doc["pages"])
     items = sorted(texts + tables, key=lambda x: x[0])  # stable sort: page order, text before its page's tables
     prefix = prefix or f"{doc['company']}_{doc['year']}"
     chunks = [

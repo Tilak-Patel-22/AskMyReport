@@ -102,15 +102,15 @@ def rerank(query, found):
     return sorted(hits, key=lambda h: -h["score"])
 
 
-def dense(collection, query, where):
-    r = collection.query(query_embeddings=[model().encode(QUERY_PREFIX + query)], n_results=CANDIDATES, where=where)
+def dense(collection, query, where, n=CANDIDATES):
+    r = collection.query(query_embeddings=[model().encode(QUERY_PREFIX + query)], n_results=n, where=where)
     return {i: {"chunk_id": i, **m, "text": d} for i, m, d in zip(r["ids"][0], r["metadatas"][0], r["documents"][0])}
 
 
-def ranked(query, companies, years):
+def ranked(query, companies, years, n=CANDIDATES):
     """Dense top CANDIDATES ∪ BM25 top CANDIDATES for one company/year filter, reranked by the cross-encoder."""
-    found = dense(get_collection(), query, where_filter(companies, years))
-    for i in bm25_top(query, companies, years):  # union with the keyword hits, deduped by chunk_id
+    found = dense(get_collection(), query, where_filter(companies, years), n)
+    for i in bm25_top(query, companies, years, n):  # union with the keyword hits, deduped by chunk_id
         found.setdefault(BM25_IDS[i], {"chunk_id": BM25_IDS[i], **BM25_META[i], "text": BM25_TEXT[i]})
     return rerank(query, found)
 
@@ -123,16 +123,16 @@ def upload_index(upload_id):
     return got["ids"], got["metadatas"], texts, BM25Okapi([tokens(t) for t in texts]) if texts else None
 
 
-def ranked_upload(query, upload_id):
+def ranked_upload(query, upload_id, n=CANDIDATES):
     """Same hybrid search + rerank as the library, restricted to one user-uploaded PDF."""
-    found = dense(get_collection("uploads"), query, {"upload_id": upload_id})
+    found = dense(get_collection("uploads"), query, {"upload_id": upload_id}, n)
     ids, metas, texts, bm = upload_index(upload_id)
-    for i in best_keyword(bm, query, list(range(len(ids)))):
+    for i in best_keyword(bm, query, list(range(len(ids))), n):
         found.setdefault(ids[i], {"chunk_id": ids[i], **metas[i], "text": texts[i]})
     return rerank(query, found)
 
 
-def library_lists(query, company, year):
+def library_lists(query, company, year, n=CANDIDATES):
     """One reranked list per company searched in the report library (company/year auto-detected if not given)."""
     found_companies, found_years = detect(query)
     companies = [company] if company else found_companies
@@ -140,18 +140,20 @@ def library_lists(query, company, year):
     if len(companies) > 1:
         # comparison ("TCS vs Infosys"): search each company on its own, so the one whose chunks happen to
         # score higher can't fill every slot (one shared search returned 7 Infosys + 1 TCS chunks)
-        return [ranked(query, [c], years) for c in companies]
-    return [ranked(query, companies, years)]
+        return [ranked(query, [c], years, n) for c in companies]
+    return [ranked(query, companies, years, n)]
 
 
-_cache = {}  # (query, company, year, upload_id) -> one ranked list per searched company; any top_k is cut from these
+_cache = {}  # (query, company, year, upload_id, candidates) -> one ranked list per searched company; any top_k is cut from these
 
 
-def retrieve(query: str, company: str = None, year: str = None, top_k: int = 5, upload_id: str = None) -> list:
-    """Best chunks for the query: from one uploaded PDF if upload_id is given, else from the report library."""
-    key = (query, company, year, upload_id)
+def retrieve(query: str, company: str = None, year: str = None, top_k: int = 5, upload_id: str = None,
+             candidates: int = CANDIDATES) -> list:
+    """Best chunks for the query: from one uploaded PDF if upload_id is given, else from the report library.
+    candidates: dense + keyword hits per source that the reranker sees (generate.py widens it for follow-up searches)."""
+    key = (query, company, year, upload_id, candidates)
     if key not in _cache:
-        _cache[key] = [ranked_upload(query, upload_id)] if upload_id else library_lists(query, company, year)
+        _cache[key] = [ranked_upload(query, upload_id, candidates)] if upload_id else library_lists(query, company, year, candidates)
     lists = _cache[key]
     if len(lists) == 1:
         return lists[0][:top_k]
